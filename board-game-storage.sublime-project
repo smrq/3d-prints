@@ -1,0 +1,20 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"build_systems":
+	[
+		{
+			"file_patterns":
+			[
+				"*.clj"
+			],
+			"name": "Build OpenSCAD file",
+			"working_dir": "$project_path",
+			"shell_cmd": "make ${file_base_name}"
+		}
+	]
+}
