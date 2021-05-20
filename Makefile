@@ -14,14 +14,14 @@ ifneq ($(SKIP_DOCKER), true)
 	RUN := docker run --rm -e SKIP_DOCKER=true -v $(CWD):/root/workspace $(DOCKER_IMG)
 endif
 
-SRCDIR := src/net/smrq/board_game_storage
+SRCDIR := src
 SCADDIR := scad
 STLDIR := stl
 
-GAMES := $(foreach file,$(wildcard $(SRCDIR)/games/*.clj),$(basename $(notdir $(file))))
+GAMES := $(foreach file,$(wildcard $(SRCDIR)/games/*.js),$(basename $(notdir $(file))))
 
 all: $(GAMES)
-.PHONY: all list clean docker format $(GAMES)
+.PHONY: all list clean docker $(GAMES)
 .SECONDARY:
 
 list:
@@ -34,14 +34,7 @@ clean:
 docker: Dockerfile
 	docker build -t $(DOCKER_IMG) .
 
-format:
-	$(RUN) lein cljfmt fix
-
 $(GAMES):
 	@$(call MKDIRP,$(SCADDIR))
 	@$(call MKDIRP,$(STLDIR))
-	@echo ** $@ **
-	@echo Building SCAD file...
-	@$(RUN) lein exec -p $(SRCDIR)/games/$@.clj
-	@echo Building STL files...
-	@$(RUN) bash -c "for infile in $(SCADDIR)/$@__*.scad; do outfile=$${infile%%.scad}.stl; outfile=$(STLDIR)/$${outfile##$(SCADDIR)/}; openscad -o $$outfile $$infile; done"
+	@$(RUN) bash compile.sh $@

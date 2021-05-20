@@ -1,0 +1,12 @@
+{
+  "name": "board-game-storage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/smrq/board-game-storage.git",
+  "author": "Greg Smith <smrq@smrq.net>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@smrq/openscad-js": "^1.0.1"
+  }
+}

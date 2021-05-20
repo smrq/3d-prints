@@ -10,7 +10,7 @@
 		{
 			"file_patterns":
 			[
-				"*.clj"
+				"*.js"
 			],
 			"name": "Build OpenSCAD file",
 			"working_dir": "$project_path",
