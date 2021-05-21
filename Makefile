@@ -18,10 +18,10 @@ SRCDIR := src
 SCADDIR := scad
 STLDIR := stl
 
-GAMES := $(foreach file,$(wildcard $(SRCDIR)/games/*.js),$(basename $(notdir $(file))))
+GAMES := $(foreach file,$(wildcard $(SRCDIR)/*.js),$(basename $(notdir $(file))))
 
 all: $(GAMES)
-.PHONY: all list clean docker $(GAMES)
+.PHONY: all list clean docker yarn $(GAMES)
 .SECONDARY:
 
 list:
@@ -33,6 +33,9 @@ clean:
 
 docker: Dockerfile
 	docker build -t $(DOCKER_IMG) .
+
+yarn:
+	@$(RUN) yarn
 
 $(GAMES):
 	@$(call MKDIRP,$(SCADDIR))

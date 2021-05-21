@@ -3,7 +3,7 @@
 echo --- $1 ---
 
 echo Building SCAD files...
-yarn node src/games/$1.js
+yarn node src/$1.js
 
 echo Building STL files...
 for infile in scad/$1__*.scad; do

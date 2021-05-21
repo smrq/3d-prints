@@ -10,7 +10,7 @@ const { modules: {
 	union,
 }} = require('@smrq/openscad-js');
 
-const { cube_z0, linear_extrude_y } = require('../shared');
+const { cube_z0, linear_extrude_y } = require('./shared');
 
 const boxDimensions = {x: 154, y: 222, z: 50 };
 const rulebookWidth = 6;
@@ -118,7 +118,7 @@ const output = {
 };
 
 Object.entries(output).forEach(([name, src]) => {
-	const filename = path.resolve(__dirname, '../../scad', name + '.scad');
+	const filename = path.resolve(__dirname, '../scad', name + '.scad');
 	console.log(`Writing ${filename}`);
 	fs.writeFileSync(filename, src, 'utf8');
 });
