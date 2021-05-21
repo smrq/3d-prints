@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+/**
+  * Single-box storage for Codenames and Codenames Duet
+  */
+
 const { modules: {
 	cube,
 	cylinder,
@@ -10,9 +12,13 @@ const { modules: {
 	union,
 }} = require('@smrq/openscad-js');
 
-const { cube_z0, linear_extrude_y } = require('./shared');
+const {
+	cube_z0,
+	linear_extrude_y,
+	writeFiles
+} = require('./shared');
 
-const boxDimensions = {x: 154, y: 222, z: 50 };
+const boxDimensions = { x: 154, y: 222, z: 50 };
 const rulebookWidth = 6;
 const boxHeightFull = boxDimensions.z - rulebookWidth;
 
@@ -27,7 +33,8 @@ const baseKeyCardHolder = (() => {
 	const cardCutout = cube_z0(68, 68, boxHeightFull);
 	const gripCutout = cube_z0(25, 74, boxHeightFull);
 
-	return difference()(frame,
+	return difference()(
+		frame,
 		translate([0, 0, boxHeightFull-22])(hourglassCutout),
 		translate([0, 0, boxHeightFull-(22+13)])(cardCutout),
 		translate([0, 0, boxHeightFull-(22+13+3)])(gripCutout),
@@ -111,14 +118,8 @@ const mainCardHolder = (() => {
 	);
 })();
 
-const output = {
+writeFiles({
 	'codenames__base-keys': String(baseKeyCardHolder),
 	'codenames__duet-keys': String(duetKeyCardHolder),
 	'codenames__main': '$fn = 100;\n' + String(mainCardHolder),
-};
-
-Object.entries(output).forEach(([name, src]) => {
-	const filename = path.resolve(__dirname, '../scad', name + '.scad');
-	console.log(`Writing ${filename}`);
-	fs.writeFileSync(filename, src, 'utf8');
 });

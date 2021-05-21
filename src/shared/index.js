@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { modules: {
 	cube,
 	linear_extrude,
@@ -19,7 +21,16 @@ function linear_extrude_y(...keys) {
 	);
 }
 
+function writeFiles(files) {
+	Object.entries(files).forEach(([name, src]) => {
+		const filename = path.resolve(__dirname, '../../scad', name + '.scad');
+		console.log(`Writing ${filename}`);
+		fs.writeFileSync(filename, src, 'utf8');
+	});
+}
+
 module.exports = {
 	cube_z0,
 	linear_extrude_y,
+	writeFiles,
 };

@@ -1,6 +1,6 @@
-# board-game-storage
+# 3d-prints
 
-3D printable board game storage containers
+3D printable models made with OpenSCAD
 
 ## Installation/Usage
 

@@ -18,14 +18,14 @@ SRCDIR := src
 SCADDIR := scad
 STLDIR := stl
 
-GAMES := $(foreach file,$(wildcard $(SRCDIR)/*.js),$(basename $(notdir $(file))))
+SRCS := $(foreach file,$(wildcard $(SRCDIR)/*.js),$(basename $(notdir $(file))))
 
-all: $(GAMES)
-.PHONY: all list clean docker yarn $(GAMES)
+all: $(SRCS)
+.PHONY: all list clean docker yarn $(SRCS)
 .SECONDARY:
 
 list:
-	@echo $(GAMES)
+	@echo $(SRCS)
 
 clean:
 	$(call RMRF,$(SCADDIR))
@@ -37,7 +37,7 @@ docker: Dockerfile
 yarn:
 	@$(RUN) yarn
 
-$(GAMES):
+$(SRCS):
 	@$(call MKDIRP,$(SCADDIR))
 	@$(call MKDIRP,$(STLDIR))
 	@$(RUN) bash compile.sh $@
