@@ -75,17 +75,18 @@ with (globals(x => eval(x))) {
 				translate([0, r])(...block)
 			)
 		);
-	}
+	};
 
-	const placeKeyObjects = (fn) => {
+	const placeOrthoKeys = (fn) => {
 		const orthoKeys = [
-			...makeColumn(0, -0.3,  [[1,1,rcj], [1,1,rcj], [1,1,rcs]]),
+			...makeColumn(0, -0.4,  [[1,1,rcj], [1,1,rcj], [1,1,rcs]]),
 			...makeColumn(1, -0.15, [[1,1], [1,1], [1,1]]),
 			...makeColumn(2, 0.25,  [[1,1], [1,1], [1,1]]),
 			...makeColumn(3, 0.5,   [[1,1], [1,1], [1,1]]),
 			...makeColumn(4, 0.25,  [[1,1], [1,1], [1,1]]),
 			...makeColumn(5, 0,     [[1,1], [1,1], [1,1]]),
 		];
+		const enterKey = fn([1,2], rcj);
 
 		return union()(
 			...orthoKeys.map(({ position, size, color }) =>
@@ -93,27 +94,40 @@ with (globals(x => eval(x))) {
 					fn(size, color)
 				)
 			),
-			translateUV([6, 0.75])(fn([1,2], rcj)),
-			translateUV([0.5, -1.3])(fn([1,1], rcj)),
-			translateUV([1.5, -1.15])(fn([1,1], rcj)),
-			translateUV([2.5, -1])(fn([1,1], rcj)),
-			translateUV([3.5, -1])(
-				fn([1,1], rcj),
-				translateArc(10, keySpacing, 1)(fn([1,1], rcj)),
-				translateArc(10, keySpacing, 2)(fn([1,1], rcj)),
+
+			translateUV([6, 0.75])(enterKey),
+		);
+	};
+
+	const placeModifierKeys = (fn) => {
+		const modKey = fn([1,1], rcj);
+		return union()(
+			translateUV([0.5, -1.4])(modKey),
+			translateUV([1.5, -1.25])(modKey),
+			translateUV([2.5, -1.1])(modKey),
+			translateUV([3.5, -1.1])(
+				modKey,
+				translateArc(15, keySpacing, 1)(modKey),
+				translateArc(15, keySpacing, 2)(modKey),
 			),
 		);
-	}
+	};
+
+	const placeKeyObjects = (fn) => union()(
+		placeOrthoKeys(fn),
+		placeModifierKeys(fn)
+	);
 
 	const keyplateBase = minkowski()(
 		union()(
 			placeKeyObjects(size => keyArea(size)),
 			hull()(
 				translateUV([6, 0.75])(keyArea([1,2])),
-				translateUV([3.5, -1])(
-					translateArc(10, keySpacing, 2)(keyArea([1,1], rcj))
+				translateUV([3.5, -1.1])(
+					translateArc(15, keySpacing, 2)(keyArea([1,1], rcj))
 				),
-			)
+			),
+			translateUV([3,0])(keyArea([1,1]))
 		),
 		circle(5)
 	);
