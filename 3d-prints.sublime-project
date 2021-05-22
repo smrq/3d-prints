@@ -1,10 +1,4 @@
 {
-	"folders":
-	[
-		{
-			"path": "."
-		}
-	],
 	"build_systems":
 	[
 		{
@@ -13,8 +7,14 @@
 				"*.js"
 			],
 			"name": "Build OpenSCAD file",
-			"working_dir": "$project_path",
-			"shell_cmd": "make ${file_base_name}"
+			"shell_cmd": "make ${file_base_name}",
+			"working_dir": "$project_path"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
 		}
 	]
 }

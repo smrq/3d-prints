@@ -5,17 +5,17 @@ __metadata:
   version: 4
   cacheKey: 7
 
-"@smrq/openscad-js@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@smrq/openscad-js@npm:1.0.1"
-  checksum: 7a162a3afe5d8909041b0b1eebcb801b06202cdeaff731663f08fe70df0f07d261688830e018f86523926f4a5c4dce6d969eb7d07a6735916f63d8c6b15b20ca
-  languageName: node
-  linkType: hard
-
-"board-game-storage@workspace:.":
+"@smrq/3d-prints@workspace:.":
   version: 0.0.0-use.local
-  resolution: "board-game-storage@workspace:."
+  resolution: "@smrq/3d-prints@workspace:."
   dependencies:
-    "@smrq/openscad-js": ^1.0.1
+    "@smrq/openscad-js": ^1.0.4
   languageName: unknown
   linkType: soft
+
+"@smrq/openscad-js@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@smrq/openscad-js@npm:1.0.4"
+  checksum: 713729f46b37ac5b5700fe5a58e6869c1bcb26d59b25a0b12a694316da446ae2f1fe710f96831f1016f387a05a93460b88b3126bbb44d5f5d36b5407705fe49a
+  languageName: node
+  linkType: hard

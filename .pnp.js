@@ -19,14 +19,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],
     "dependencyTreeRoots": [
       {
-        "name": "board-game-storage",
+        "name": "@smrq/3d-prints",
         "reference": "workspace:."
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["board-game-storage", ["workspace:."]]
+      ["@smrq/3d-prints", ["workspace:."]]
     ],
     "fallbackPool": [
     ],
@@ -37,28 +37,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@smrq/openscad-js", "npm:1.0.1"]
+            ["@smrq/openscad-js", "npm:1.0.4"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@smrq/3d-prints", [
+        ["workspace:.", {
+          "packageLocation": "./",
+          "packageDependencies": [
+            ["@smrq/3d-prints", "workspace:."],
+            ["@smrq/openscad-js", "npm:1.0.4"]
           ],
           "linkType": "SOFT",
         }]
       ]],
       ["@smrq/openscad-js", [
-        ["npm:1.0.1", {
-          "packageLocation": "./.yarn/cache/@smrq-openscad-js-npm-1.0.1-9f0f1ff72a-7a162a3afe.zip/node_modules/@smrq/openscad-js/",
+        ["npm:1.0.4", {
+          "packageLocation": "./.yarn/cache/@smrq-openscad-js-npm-1.0.4-52181c5e4a-713729f46b.zip/node_modules/@smrq/openscad-js/",
           "packageDependencies": [
-            ["@smrq/openscad-js", "npm:1.0.1"]
+            ["@smrq/openscad-js", "npm:1.0.4"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["board-game-storage", [
-        ["workspace:.", {
-          "packageLocation": "./",
-          "packageDependencies": [
-            ["board-game-storage", "workspace:."],
-            ["@smrq/openscad-js", "npm:1.0.1"]
-          ],
-          "linkType": "SOFT",
         }]
       ]]
     ]

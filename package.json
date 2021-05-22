@@ -7,6 +7,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@smrq/openscad-js": "^1.0.1"
+    "@smrq/openscad-js": "^1.0.4"
   }
 }
